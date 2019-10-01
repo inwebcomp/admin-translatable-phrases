@@ -10,6 +10,11 @@ class TranslatablePhrases extends Tool
 {
     use HasPermissions;
 
+    public static function uriKey()
+    {
+        return 'translatable-phrases';
+    }
+
     public static function label()
     {
         return __('Переводы');
