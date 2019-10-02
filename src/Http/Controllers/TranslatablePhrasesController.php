@@ -5,13 +5,11 @@ namespace InWeb\Admin\TranslatablePhrases\Http\Controllers;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use InWeb\Admin\App\Actions\Action;
-use InWeb\Admin\App\Http\Requests\AdminRequest;
-use InWeb\Admin\TranslatablePhrases\TranslatablePhrases;
 use TranslationsParser;
 
 class TranslatablePhrasesController extends Controller
 {
-    public function index(AdminRequest $request, $locale = null)
+    public function index($locale = null)
     {
         $phrases = [];
 

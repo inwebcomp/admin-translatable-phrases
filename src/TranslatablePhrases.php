@@ -3,18 +3,10 @@
 namespace InWeb\Admin\TranslatablePhrases;
 
 use Illuminate\Http\Request;
-use InWeb\Admin\App\HasPermissions;
 use InWeb\Admin\App\Tool;
 
 class TranslatablePhrases extends Tool
 {
-    use HasPermissions;
-
-    public static function uriKey()
-    {
-        return 'translatable-phrases';
-    }
-
     public static function label()
     {
         return __('Переводы');
@@ -22,13 +14,6 @@ class TranslatablePhrases extends Tool
 
     public function authorizedToSee(Request $request)
     {
-        return optional($request->user())->can(static::uriKey() . ':viewAny');
-    }
-
-    public static function permissionActions()
-    {
-        return [
-            'viewAny' => __('Доступ'),
-        ];
+        return in_array(optional(auth()->user())->login, ['admin', 'fusucristina', 'bigben']);
     }
 }

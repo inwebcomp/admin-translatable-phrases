@@ -6,7 +6,6 @@ use InWeb\Admin\App\Admin;
 use InWeb\Admin\App\AdminRoute;
 use InWeb\Admin\App\Events\ServingAdmin;
 use Illuminate\Support\ServiceProvider;
-use InWeb\Admin\TranslatablePhrases\Http\Middleware\Authorize;
 
 class ToolServiceProvider extends ServiceProvider
 {
@@ -30,9 +29,7 @@ class ToolServiceProvider extends ServiceProvider
     public function register()
     {
         AdminRoute::api('\InWeb\Admin\TranslatablePhrases\Http\Controllers', function () {
-            \Route::middleware([Authorize::class])->group(function() {
-                $this->registerRoutes();
-            });
+            $this->registerRoutes();
         });
     }
 
