@@ -159,9 +159,9 @@
 
             changeLanguage(locale) {
                 if (locale)
-                    this.$router.push({name: 'admin-translatable-phrases', params: {selectedLocale: locale}})
+                    this.$router.push({name: 'translatable-phrases', params: {selectedLocale: locale}})
                 else
-                    this.$router.push({name: 'admin-translatable-phrases'})
+                    this.$router.push({name: 'translatable-phrases'})
             }
         },
 
