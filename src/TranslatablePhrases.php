@@ -12,6 +12,11 @@ class TranslatablePhrases extends Tool
         return __('Переводы');
     }
 
+    public static function uriKey()
+    {
+        return 'translatable-phrases';
+    }
+
     public function authorizedToSee(Request $request)
     {
         return in_array(optional(auth()->user())->login, ['admin', 'fusucristina', 'bigben']);
