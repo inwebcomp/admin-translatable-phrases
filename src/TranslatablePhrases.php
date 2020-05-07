@@ -19,6 +19,13 @@ class TranslatablePhrases extends Tool
 
     public function authorizedToSee(Request $request)
     {
-        return in_array(optional(auth()->user())->login, ['admin', 'fusucristina', 'bigben']);
+        return optional($request->user())->can(static::uriKey() . ':viewAny');
+    }
+
+    public static function permissionActions()
+    {
+        return [
+            'viewAny' => __('Доступ'),
+        ];
     }
 }
