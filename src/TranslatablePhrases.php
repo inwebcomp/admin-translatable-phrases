@@ -7,8 +7,6 @@ use InWeb\Admin\App\Tool;
 
 class TranslatablePhrases extends Tool
 {
-    public static $group = 'info';
-
     public static function label()
     {
         return __('Переводы');
