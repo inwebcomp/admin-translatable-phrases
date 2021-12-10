@@ -1,6 +1,7 @@
 {
     "name": "inweb/admin-translatable-phrases",
     "description": "InWeb Admin tool",
+    "version": "8.0.0",
     "keywords": [
         "laravel"
     ],
