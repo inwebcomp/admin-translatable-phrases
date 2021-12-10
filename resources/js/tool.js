@@ -1,4 +1,4 @@
-import Tool from './components/Tool'
+import Tool from './components/Tool.vue'
 
 App.booting((Vue, router) => {
     router.addRoutes([

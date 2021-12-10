@@ -39,14 +39,29 @@ class TranslatablePhrasesController extends Controller
 
         $phrases = [];
 
-        foreach (\File::allFiles($langDir . '/' . $showLocales[0]) as $file) {
-            $info = pathinfo($file);
-            $title = Str::title(Str::snake($info['filename'], ' '));
+        $directories = [];
 
-            $phrases = [];
+        foreach ($showLocales as $locale) {
+            $dir = $langDir . '/' . $locale;
 
-            foreach ($showLocales as $locale) {
-                $file = $langDir . '/' . $locale . '/' . $info['basename'];
+            $directories[] = $dir;
+        }
+
+        foreach ($directories as $directory) {
+            foreach (\File::allFiles($directory) as $file) {
+                $info = pathinfo($file);
+                $title = Str::title(Str::snake($info['filename'], ' '));
+
+                $phrases = [];
+
+//                foreach ($showLocales as $locale) {
+//                    $dir = $langDir . '/' . $locale;
+//                    $file = $dir . '/' . $info['basename'];
+
+                $locale = basename($directory);
+
+                if (!\File::exists($directory))
+                    continue;
 
                 if (\File::exists($file)) {
                     $parsed = \File::getRequire($file);
@@ -55,15 +70,15 @@ class TranslatablePhrasesController extends Controller
                         $phrases[$original][$locale] = $phrase;
                     }
                 }
+//                }
+
+                $groups[] = [
+                    'title'   => $title,
+                    'phrases' => $phrases,
+                    'name'    => $info['filename'],
+                ];
             }
-
-            $groups[] = [
-                'title'   => $title,
-                'phrases' => $phrases,
-                'name'    => $info['filename'],
-            ];
         }
-
 
         return compact('groups', 'locales');
     }
